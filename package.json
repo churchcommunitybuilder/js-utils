@@ -1,0 +1,31 @@
+{
+  "name": "@churchcommunitybuilder/js-utils",
+  "version": "0.0.1",
+  "description": "JS Utils",
+  "main": "dist/index.js",
+  "repository": "https://github.com/churchcommunitybuilder/js-utils.git",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/**/*",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "prepublish": "yarn build",
+    "test:shared": "yarn jest --config test/test.config.js",
+    "test": "yarn test:shared --watch"
+  },
+  "dependencies": {
+    "ramda": "^0.26.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.16",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  }
+}
