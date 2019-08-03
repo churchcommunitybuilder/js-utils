@@ -1,4 +1,4 @@
-import { AnyFunc } from './types/helpers';
+import { AnyFunc } from './types';
 
 export default <F extends AnyFunc>(fn: F, duration = 250) => {
   let timeout: number;
@@ -8,6 +8,6 @@ export default <F extends AnyFunc>(fn: F, duration = 250) => {
       clearTimeout(timeout);
     }
 
-    timeout = setTimeout(() => fn(...args), duration);
+    timeout = <any>setTimeout(() => fn(...args), duration);
   };
 };

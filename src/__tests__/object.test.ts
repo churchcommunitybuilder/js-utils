@@ -1,4 +1,4 @@
-import * as utils from '../';
+import * as utils from '../object';
 
 describe('#hasValue', () => {
   describe('when the input is an object or array', () => {

@@ -1,31 +1,42 @@
 {
   "name": "@churchcommunitybuilder/js-utils",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "description": "JS Utils",
-  "main": "dist/index.js",
-  "repository": "https://github.com/churchcommunitybuilder/js-utils.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/churchcommunitybuilder/js-utils.git"
+  },
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "dist/**/*",
-    "LICENSE"
+    "**/*",
+    "/LICENSE"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.json",
-    "prepublish": "yarn build",
+    "build": "rm -rf dist && tsc -p tsconfig.json && cp package.json dist/package.json",
     "test:shared": "yarn jest --config test/test.config.js",
     "test": "yarn test:shared --watch"
   },
   "dependencies": {
+    "export-dirs": "^0.2.4",
     "ramda": "^0.26.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.16",
+    "@types/node": "^12.6.9",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/churchcommunitybuilder/js-utils/issues"
+  },
+  "homepage": "https://github.com/churchcommunitybuilder/js-utils#readme",
+  "directories": {
+    "test": "test"
+  },
+  "author": ""
 }
