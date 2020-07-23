@@ -10,19 +10,22 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
+  "main": "cjs/index.js",
+  "module": "es/index.js",
   "files": [
-    "/lib/**/*"
+    "/cjs/**/*",
+    "/es/**/*"
   ],
   "scripts": {
     "prettier": "prettier --loglevel error --write '**/*.{ts,tsx}'",
-    "build": "tsc -p tsconfig.json #",
-    "build:publish": "rm -rf lib && yarn build",
-    "build:precommit": "yarn && yarn build --noEmit",
+    "build": "yarn && tsc -p tsconfig.json #",
+    "build:es": "rm -rf es && tsc -p tsconfig.es.json",
+    "build:cjs": "rm -rf cjs && tsc -p tsconfig.cjs.json",
     "test:shared": "TZ=\"UTC\" jest --config test/test.config.js",
     "test": "yarn test:shared --watch",
     "test:precommit": "yarn test:shared --findRelatedTests",
     "lint": "eslint --fix src/**/*.ts",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build:es && yarn build:cjs"
   },
   "husky": {
     "hooks": {
@@ -31,7 +34,7 @@
   },
   "lint-staged": {
     "*": [
-      "yarn build:precommit"
+      "yarn build"
     ],
     "**/*.{ts,tsx}": [
       "yarn prettier",
