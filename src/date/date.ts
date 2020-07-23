@@ -1,6 +1,5 @@
 import * as dateFns from 'date-fns'
 import memoize from 'fast-memoize'
-import { convertToInt } from 'number'
 
 export type DateOrISOString = string | Date
 
