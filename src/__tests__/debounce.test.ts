@@ -1,20 +1,20 @@
-import debounce from '../debounce';
+import debounce from '../debounce'
 
 describe('#debounce', () => {
   test('should debounce multiple calls', () => {
-    jest.useFakeTimers();
+    jest.useFakeTimers()
 
-    const fn = jest.fn();
-    const debouncedFunc = debounce(fn);
+    const fn = jest.fn()
+    const debouncedFunc = debounce(fn)
 
-    debouncedFunc();
-    debouncedFunc();
+    debouncedFunc()
+    debouncedFunc()
 
-    jest.runAllTimers();
+    jest.runAllTimers()
 
-    expect(clearTimeout).toHaveBeenCalled();
-    expect(setTimeout).toHaveBeenCalledTimes(2);
+    expect(clearTimeout).toHaveBeenCalled()
+    expect(setTimeout).toHaveBeenCalledTimes(2)
 
-    expect(fn).toHaveBeenCalledTimes(1);
-  });
-});
+    expect(fn).toHaveBeenCalledTimes(1)
+  })
+})

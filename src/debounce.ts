@@ -1,13 +1,13 @@
-import { AnyFunc } from './types';
+import { AnyFunc } from './types'
 
 export default <F extends AnyFunc>(fn: F, duration = 250) => {
-  let timeout: number;
+  let timeout: any
 
   return (...args: Parameters<F>) => {
     if (timeout) {
-      clearTimeout(timeout);
+      clearTimeout(timeout)
     }
 
-    timeout = <any>setTimeout(() => fn(...args), duration);
-  };
-};
+    timeout = setTimeout(() => fn(...args), duration)
+  }
+}

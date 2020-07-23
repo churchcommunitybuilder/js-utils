@@ -2,41 +2,69 @@
   "name": "@churchcommunitybuilder/js-utils",
   "version": "0.0.9",
   "description": "JS Utils",
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/churchcommunitybuilder/js-utils.git"
   },
-  "license": "MIT",
-  "private": false,
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com/"
   },
   "files": [
-    "**/*",
-    "/LICENSE"
+    "/lib/**/*"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.json && cp package.json dist/package.json",
-    "test:shared": "yarn jest --config test/test.config.js",
-    "test": "yarn test:shared --watch"
+    "prettier": "prettier --loglevel error --write '**/*.{ts,tsx}'",
+    "build": "tsc -p tsconfig.json #",
+    "build:publish": "rm -rf lib && yarn build",
+    "build:precommit": "yarn && yarn build --noEmit",
+    "test:shared": "TZ=\"UTC\" jest --config test/test.config.js",
+    "test": "yarn test:shared --watch",
+    "test:precommit": "yarn test:shared --findRelatedTests",
+    "lint": "eslint --fix src/**/*.ts",
+    "prepublishOnly": "yarn build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*": [
+      "yarn build:precommit"
+    ],
+    "**/*.{ts,tsx}": [
+      "yarn prettier",
+      "yarn lint",
+      "git add"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "yarn test:precommit"
+    ]
   },
   "dependencies": {
-    "export-dirs": "^0.2.4",
-    "ramda": "^0.26.1"
+    "@churchcommunitybuilder/enums": "^0.0.10",
+    "date-fns": "^2.15.0",
+    "fast-memoize": "^2.5.2",
+    "ramda": "^0.27.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.16",
-    "@types/node": "^12.6.9",
-    "jest": "^24.8.0",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.5.3"
+    "@types/jest": "^26.0.5",
+    "@types/ramda": "^0.27.11",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.3",
+    "typescript": "^3.9.7"
   },
   "bugs": {
     "url": "https://github.com/churchcommunitybuilder/js-utils/issues"
   },
-  "homepage": "https://github.com/churchcommunitybuilder/js-utils#readme",
-  "directories": {
-    "test": "test"
-  },
-  "author": ""
+  "homepage": "https://github.com/churchcommunitybuilder/js-utils#readme"
 }
