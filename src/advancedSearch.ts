@@ -27,7 +27,7 @@ export const buildSearchConstraint = (
 })
 
 export const buildSearchGroup = (
-  conditions: Constraint[],
+  conditions: GroupConstraint['conditions'],
   operator = 'and',
   invert = false,
 ): GroupConstraint => ({
