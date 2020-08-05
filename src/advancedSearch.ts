@@ -7,7 +7,7 @@ export interface Constraint {
 }
 
 export interface GroupConstraint {
-  conditions: Constraint[]
+  conditions: (Constraint | GroupConstraint)[]
   operator: string
   invert: boolean
   type: 'group'
