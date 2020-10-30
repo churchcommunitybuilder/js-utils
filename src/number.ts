@@ -1,7 +1,7 @@
-export const convertToInt = (item: any, fallback = 0): number => {
+export const convertToInt = (item: any): number | null => {
   const parsedInt = parseInt(item, 10)
 
-  return Number.isNaN(parsedInt) ? fallback : parsedInt
+  return Number.isNaN(parsedInt) ? null : parsedInt
 }
 
 export const ordinalize = (numberOrString: string | number) => {

@@ -15,7 +15,7 @@ export const formatRecurrence = (recurrence?: types.Recurrence) => {
     frequencyModifier,
     interval: intervalString,
   } = recurrence
-  const interval = convertToInt(intervalString)
+  const interval = convertToInt(intervalString) ?? 0
 
   let recurrenceRules: any[] = []
   let frequency = null
