@@ -2,8 +2,16 @@ import * as utils from '../number'
 
 describe('#convertToInt', () => {
   describe('when the input is not a number', () => {
-    test('should return null', () => {
-      expect(utils.convertToInt('n')).toBeNull()
+    describe('when a fallback value is provided', () => {
+      test('should return the fallback value', () => {
+        expect(utils.convertToInt('n', 1)).toBe(1)
+      })
+    })
+
+    describe('when a fallback value is not provided', () => {
+      test('should return 0', () => {
+        expect(utils.convertToInt('n')).toBe(0)
+      })
     })
   })
 
