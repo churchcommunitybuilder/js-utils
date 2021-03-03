@@ -1,14 +1,24 @@
-export const convertToInt = (item: any, fallback = 0) => {
+/**
+ * Similar to Number.parseInt but automatically handles NaN
+ */
+export const convertToInt = (item: any, fallback = 0): number => {
   const parsedInt = parseInt(item, 10)
 
   return Number.isNaN(parsedInt) ? fallback : parsedInt
 }
 
-export const ordinalize = (numberOrString: string | number) => {
+/**
+ * Ordinalizes the input
+ *
+ * Ex.
+ * 1 -> 1st
+ * 11 -> 11th
+ */
+export const ordinalize = (numberOrString: string | number): string => {
   const number = convertToInt(numberOrString)
 
   if (!number) {
-    return numberOrString
+    return numberOrString as string
   }
 
   let suffix

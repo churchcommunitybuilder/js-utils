@@ -1,3 +1,6 @@
+/**
+ * Converts an item to an array
+ */
 export const toArray = <T extends unknown>(
   maybeArray: T,
 ): T extends any[] ? T : T[] => {

@@ -6,7 +6,13 @@ import { formatDate } from './date'
 import * as types from './recurrenceTypes'
 
 const infiniteRecurrencePlaceholder = '20311231'
-export const formatRecurrence = (recurrence?: types.Recurrence) => {
+
+/**
+ * Formats a recurrence to a human readable string
+ */
+export const formatRecurrence = (
+  recurrence?: types.Recurrence,
+): string | null => {
   if (!recurrence) return null
 
   const {

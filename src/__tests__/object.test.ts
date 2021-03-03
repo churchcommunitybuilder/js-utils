@@ -55,3 +55,27 @@ describe('#valueIsTruthy', () => {
     })
   })
 })
+
+describe('#mapObject', () => {
+  test('should map the object', () => {
+    const input = { x: 1, y: 2 }
+    const output = utils.mapObject(
+      (value, key) => (key === 'x' ? value + 1 : value + 2),
+      input,
+    )
+
+    expect(output).toEqual({ x: 2, y: 4 })
+  })
+})
+
+describe('#mapObjectKeys', () => {
+  test('should map the object keys', () => {
+    const input = { x: 1, y: 2 }
+    const output = utils.mapObjectKeys(
+      (key) => (key === 'x' ? 'a' : 'b'),
+      input,
+    )
+
+    expect(output).toEqual({ a: 1, b: 2 })
+  })
+})

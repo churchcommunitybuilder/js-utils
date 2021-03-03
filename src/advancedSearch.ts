@@ -13,6 +13,9 @@ export interface GroupConstraint {
   type: 'group'
 }
 
+/**
+ * Builds a search constraint to be used with the CCB ApiV2 advanced search
+ */
 export const buildSearchConstraint = (
   id: string,
   operator: string,
@@ -26,6 +29,9 @@ export const buildSearchConstraint = (
   value,
 })
 
+/**
+ * Builds a group of search constraints to be used with the CCB ApiV2 advanced search
+ */
 export const buildSearchGroup = (
   conditions: GroupConstraint['conditions'],
   operator = 'and',
