@@ -5,6 +5,14 @@ export type DateOrISOString = string | Date
 
 const today = new Date()
 
+export const getStartOfCurrentDay = memoize(
+  (): Date => dateFns.startOfDay(today),
+)
+
+export const getStartOfCurrentDayIso = memoize((): string =>
+  getStartOfCurrentDay().toISOString(),
+)
+
 /**
  * Handles dates with the years omitted for privacy reasons.
  *
@@ -39,13 +47,54 @@ export const formatDate = (date: DateOrISOString, format: string): string =>
   dateFns.format(parseISOString(date), format)
 
 /**
- * Formats a Date object or string excluding time components
+ * Formats a Date object or string to an ISO 8601 date
  *
  * Ex.
  * 2020-01-01
  */
-export const formatServerDate = (date: DateOrISOString): string =>
+export const formatISO8601Date = (date: DateOrISOString): string =>
   formatDate(date, 'yyyy-MM-dd')
+
+/**
+ * Formats a Date object or string to an ISO 8601 date time
+ *
+ * Ex.
+ * 2020-01-01 00:00:00
+ */
+export const formatISO8601DateTime = (date: DateOrISOString): string =>
+  formatDate(date, 'yyyy-MM-dd HH:mm:ss')
+
+/**
+ * Formats a Date object or string to an ISO 8601 time
+ *
+ * Ex.
+ * 00:00:00
+ */
+export const formatISO8601Time = (date: DateOrISOString): string =>
+  formatDate(date, 'HH:mm:ss')
+
+/**
+ * Formats a number of seconds to a human readble format
+ *
+ * Ex.
+ * 90 -> 1min 30sec
+ */
+export const formatSeconds = memoize((totalSeconds: number) => {
+  const minutes = Math.floor(totalSeconds / 60)
+  const seconds = totalSeconds % 60
+
+  const format: string[] = []
+
+  if (minutes > 0) {
+    format.push(`${minutes}min`)
+  }
+
+  if (seconds > 0) {
+    format.push(`${seconds}sec`)
+  }
+
+  return format.join(' ')
+})
 
 export const shortTimeFormat = "h:mmaaaaa'm'"
 
@@ -60,6 +109,17 @@ export const formatShortTime = (date: DateOrISOString): string =>
   formatDate(date, shortTimeFormat)
 
 const longDateTimeFormat = `MMMM d, yyyy 'at' ${shortTimeFormat}`
+
+/**
+ * Formats a time range
+ *
+ * Ex.
+ * 9:00a - 11:00a
+ */
+export const formatShortTimeRange = (
+  start: DateOrISOString,
+  end: DateOrISOString,
+): string => `${formatShortTime(start)} - ${formatShortTime(end)}`
 
 /**
  * Formats a Date object or string to a readable date time format

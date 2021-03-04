@@ -49,9 +49,42 @@ describe('#parseISOString', () => {
   })
 })
 
-describe('#formatServerDate', () => {
+describe('#formatISO8601Date', () => {
   test('should format the date correctly', () => {
-    expect(utils.formatServerDate('2010-01-01T09:00:00')).toBe('2010-01-01')
+    expect(utils.formatISO8601Date('2010-01-01T09:00:00')).toBe('2010-01-01')
+  })
+})
+
+describe('#formatSeconds', () => {
+  describe('when the seconds are greater than or equal to 60', () => {
+    describe('when there are no extra seconds', () => {
+      test('should return the minutes and seconds', () => {
+        expect(utils.formatSeconds(60)).toBe('1min')
+        expect(utils.formatSeconds(120)).toBe('2min')
+      })
+    })
+
+    describe('when there are extra seconds', () => {
+      test('should return just the minutes', () => {
+        expect(utils.formatSeconds(90)).toBe('1min 30sec')
+        expect(utils.formatSeconds(150)).toBe('2min 30sec')
+      })
+    })
+  })
+
+  describe('when the seconds are fewer than 60', () => {
+    describe('when the seconds are greater than 0', () => {
+      test('should return the seconds', () => {
+        expect(utils.formatSeconds(59)).toBe('59sec')
+        expect(utils.formatSeconds(1)).toBe('1sec')
+      })
+    })
+
+    describe('when the seconds are 0', () => {
+      test('should return an empty string', () => {
+        expect(utils.formatSeconds(0)).toBe('')
+      })
+    })
   })
 })
 

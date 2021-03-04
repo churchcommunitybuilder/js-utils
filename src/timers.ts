@@ -35,15 +35,19 @@ export const debounce = <Fn extends AnyFunc>(
  */
 export const throttle = <Fn extends AnyFunc>(
   fn: Fn,
-  throttleDuration = 250,
+  duration = 250,
 ): ((...args: Parameters<Fn>) => void) => {
-  let lastTime = 0
+  let isThrottled = false
 
-  return (...args) => {
-    const now = Date.now()
-    if (now - lastTime >= throttleDuration) {
-      fn(...args)
-      lastTime = now
-    }
+  return (...args: Parameters<Fn>): ReturnType<Fn> => {
+    if (isThrottled) return null as any
+
+    isThrottled = true
+
+    setTimeout(() => {
+      isThrottled = false
+    }, duration)
+
+    return fn(...args)
   }
 }
