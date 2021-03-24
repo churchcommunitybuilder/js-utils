@@ -1,7 +1,7 @@
 /**
  * Similar to Number.parseInt but automatically handles NaN
  */
-export const convertToInt = (item: any, fallback = 0): number => {
+export const convertToInt = (item: any, fallback = 0): number | null => {
   const parsedInt = parseInt(item, 10)
 
   return Number.isNaN(parsedInt) ? fallback : parsedInt
