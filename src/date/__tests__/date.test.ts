@@ -259,3 +259,24 @@ describe('#formatRelativeDateTime', () => {
     })
   })
 })
+
+describe('#formatEventOccurrence', () => {
+  const tests = [
+    { input: new Date('January 1, 2001'), output: '20010101' },
+    { input: new Date('February 29, 2020'), output: '20200229' },
+    { input: new Date('June 7, 1941'), output: '19410607' },
+    { input: new Date('November 13, 1976'), output: '19761113' },
+    { input: new Date('December 31, 4575'), output: '45751231' },
+  ]
+
+  tests.map(({ input, output }) => {
+    describe(`when given the date ${dateFns.format(
+      input,
+      'MMMM Lo, yyyy',
+    )}`, () => {
+      test(`should output ${output}`, () => {
+        expect(utils.formatEventOccurrence(input)).toBe(output)
+      })
+    })
+  })
+})
