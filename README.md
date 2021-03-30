@@ -2,7 +2,8 @@
 JS Utils
 
 To publish
-- Increment version in package.json
-- `yarn build`
-- `cd dist`
-- `npm publish`
+- git checkout master
+- git fetch --all
+- yarn install
+- yarn publish --patch
+- git push --follow-tags
