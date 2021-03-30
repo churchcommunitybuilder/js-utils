@@ -47,6 +47,12 @@ export const formatDate = (date: DateOrISOString, format: string): string =>
   dateFns.format(parseISOString(date), format)
 
 /**
+ * Formats a Date object or string to the format used for event occurrences.
+ */
+export const formatEventOccurrence = (date: DateOrISOString): string =>
+  formatDate(date, 'yyyyMMdd')
+
+/**
  * Formats a Date object or string to an ISO 8601 date
  *
  * Ex.
