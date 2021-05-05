@@ -26,7 +26,7 @@ export const formatRecurrence = (
   let recurrenceRules: any[] = []
   let frequency = null
   const end =
-    recurrenceEnd === infiniteRecurrencePlaceholder
+    !recurrenceEnd || recurrenceEnd.includes(infiniteRecurrencePlaceholder)
       ? null
       : `until ${formatDate(recurrenceEnd, 'MMM d, yyyy')}`
 

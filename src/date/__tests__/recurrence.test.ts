@@ -138,4 +138,13 @@ describe('#formatRecurrence', () => {
       )
     })
   })
+
+  describe('when the event does not have a recur end', () => {
+    const expectedRecurrence = {
+      ...recurrence,
+      end: null,
+    }
+
+    expect(utils.formatRecurrence(expectedRecurrence)).toEqual('Repeats daily')
+  })
 })
