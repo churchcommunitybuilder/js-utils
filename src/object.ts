@@ -1,5 +1,5 @@
 import memoize from 'fast-memoize'
-import R from 'ramda'
+import * as R from 'ramda'
 
 const isStringAndEmpty = (str: any): boolean =>
   typeof str === 'string' && str.replace(/\s/g, '').length === 0

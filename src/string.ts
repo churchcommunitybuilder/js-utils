@@ -1,4 +1,4 @@
-import R from 'ramda'
+import * as R from 'ramda'
 
 /**
  * Capitalizes the input. If preserveCasing is true, it will leave the casing
