@@ -1,5 +1,3 @@
-import * as R from 'ramda'
-
 /**
  * Capitalizes the input. If preserveCasing is true, it will leave the casing
  * for the rest of the string unchanged
@@ -34,7 +32,7 @@ export const getInitials = (name: string): string => {
   if (!name) return ''
 
   const [firstName, ...otherNames] = name.split(' ')
-  const lastName = R.last(otherNames)
+  const lastName = otherNames[otherNames.length - 1]
 
   if (typeof firstName === 'string' && typeof lastName === 'string') {
     const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()

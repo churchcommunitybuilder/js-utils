@@ -1,24 +1,10 @@
 import memoize from 'fast-memoize'
-import * as R from 'ramda'
-
-const isStringAndEmpty = (str: any): boolean =>
-  typeof str === 'string' && str.replace(/\s/g, '').length === 0
-
-export const valueIsFalsey = R.anyPass([
-  R.isEmpty,
-  R.isNil,
-  R.equals(false),
-  isStringAndEmpty,
-])
 
 /**
- * Returns false if a value is:
- * An empty object
- * Null or Undefined
- * A boolean of false
- * An empty string
+ * Checks if the object is empty
  */
-export const valueIsTruthy = R.complement(valueIsFalsey)
+export const isEmptyObject = (obj: Record<any, any>): boolean =>
+  Object.keys(obj).length === 0
 
 /**
  * Turns an array in to an object with numeric keys

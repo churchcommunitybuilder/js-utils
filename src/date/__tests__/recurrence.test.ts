@@ -1,11 +1,10 @@
-import { EventRecurrenceFrequency } from '@churchcommunitybuilder/enums'
-
 import * as utils from '../recurrence'
+import * as types from '../recurrenceTypes'
 
 describe('#formatRecurrence', () => {
   const recurrence = {
     end: '20311231',
-    frequency: EventRecurrenceFrequency.Daily,
+    frequency: types.EventRecurrenceFrequency.Daily,
     frequencyModifier: '',
     interval: '1',
   }
@@ -29,7 +28,7 @@ describe('#formatRecurrence', () => {
   describe('when it recurs weekly', () => {
     const expectedRecurrence = {
       ...recurrence,
-      frequency: EventRecurrenceFrequency.Weekly,
+      frequency: types.EventRecurrenceFrequency.Weekly,
       frequencyModifier: 'MO TU WE',
     }
 
@@ -55,7 +54,7 @@ describe('#formatRecurrence', () => {
       it('should return the correct recurrence', () => {
         const expectedRecurrence = {
           ...recurrence,
-          frequency: EventRecurrenceFrequency.MonthlyByDate,
+          frequency: types.EventRecurrenceFrequency.MonthlyByDate,
           frequencyModifier: '11',
         }
 
@@ -69,7 +68,7 @@ describe('#formatRecurrence', () => {
       it('should return the correct recurrence', () => {
         const expectedRecurrence = {
           ...recurrence,
-          frequency: EventRecurrenceFrequency.MonthlyByDate,
+          frequency: types.EventRecurrenceFrequency.MonthlyByDate,
           frequencyModifier: '11',
           interval: '3',
         }
@@ -86,7 +85,7 @@ describe('#formatRecurrence', () => {
       it('should return the correct recurrence', () => {
         const expectedRecurrence = {
           ...recurrence,
-          frequency: EventRecurrenceFrequency.MonthlyByDay,
+          frequency: types.EventRecurrenceFrequency.MonthlyByDay,
           frequencyModifier: '1+ TH',
         }
 
@@ -100,7 +99,7 @@ describe('#formatRecurrence', () => {
       it('should return the correct recurrence', () => {
         const expectedRecurrence = {
           ...recurrence,
-          frequency: EventRecurrenceFrequency.MonthlyByDay,
+          frequency: types.EventRecurrenceFrequency.MonthlyByDay,
           frequencyModifier: '1+ TH 3+ MO',
         }
 
@@ -114,7 +113,7 @@ describe('#formatRecurrence', () => {
       it('should return the correct recurrence', () => {
         const expectedRecurrence = {
           ...recurrence,
-          frequency: EventRecurrenceFrequency.MonthlyByDay,
+          frequency: types.EventRecurrenceFrequency.MonthlyByDay,
           frequencyModifier: '1+ TH',
           interval: '3',
         }

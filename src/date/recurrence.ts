@@ -1,5 +1,3 @@
-import { EventRecurrenceFrequency } from '@churchcommunitybuilder/enums'
-
 import { listToCsv } from '../string'
 import { ordinalize, convertToInt } from '../number'
 import { formatDate } from './date'
@@ -31,10 +29,10 @@ export const formatRecurrence = (
       : `until ${formatDate(recurrenceEnd, 'MMM d, yyyy')}`
 
   switch (recurrenceFrequency) {
-    case EventRecurrenceFrequency.Daily:
+    case types.EventRecurrenceFrequency.Daily:
       recurrenceRules = ['days', 'daily']
       break
-    case EventRecurrenceFrequency.Weekly:
+    case types.EventRecurrenceFrequency.Weekly:
       recurrenceRules = ['weeks on', 'weekly on']
 
       if (frequencyModifier.length > 1) {
@@ -49,11 +47,11 @@ export const formatRecurrence = (
       }
 
       break
-    case EventRecurrenceFrequency.MonthlyByDate:
+    case types.EventRecurrenceFrequency.MonthlyByDate:
       recurrenceRules = ['months on the', 'monthly on the']
       frequency = ordinalize(frequencyModifier)
       break
-    case EventRecurrenceFrequency.MonthlyByDay:
+    case types.EventRecurrenceFrequency.MonthlyByDay:
       const days =
         frequencyModifier
           .replace(/1-/g, 'last')

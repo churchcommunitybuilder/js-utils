@@ -1,5 +1,3 @@
-import { EventRecurrenceFrequency } from '@churchcommunitybuilder/enums'
-
 export const eventRecurrenceDays = {
   SU: 'Sunday',
   MO: 'Monday',
@@ -11,6 +9,13 @@ export const eventRecurrenceDays = {
 } as const
 
 export type RecurrenceDay = keyof typeof eventRecurrenceDays
+
+export enum EventRecurrenceFrequency {
+  Daily = 'D',
+  Weekly = 'W',
+  MonthlyByDate = 'MD',
+  MonthlyByDay = 'MP',
+}
 
 export interface Recurrence {
   end: string
