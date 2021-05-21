@@ -15,3 +15,12 @@ describe('#toArray', () => {
     })
   })
 })
+
+describe('#uniq', () => {
+  test('should remove duplicates', () => {
+    const inputA = [1, 2, 3]
+    const inputB = [1, 2, 4]
+
+    expect(utils.uniq(inputA, inputB)).toEqual([1, 2, 3, 4])
+  })
+})

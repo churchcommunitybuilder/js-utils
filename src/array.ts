@@ -10,3 +10,9 @@ export const toArray = <T extends unknown>(
 
   return [maybeArray] as any
 }
+
+/**
+ * Removes duplicate entries
+ */
+export const uniq = <A, B>(a: A[], b: B[]): (A | B)[] =>
+  Array.from(new Set([...a, ...b]))

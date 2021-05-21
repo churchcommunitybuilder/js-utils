@@ -1,10 +1,41 @@
 import memoize from 'fast-memoize'
 
+import { uniq } from './array'
+
+type AnyObject = Record<any, any>
+
 /**
  * Checks if the object is empty
  */
-export const isEmptyObject = (obj: Record<any, any>): boolean =>
+export const isEmptyObject = (obj: AnyObject): boolean =>
   Object.keys(obj).length === 0
+
+/**
+ * Checks deep equality for two objects.
+ *
+ * NOTE: This only works with objects, arrays, or primitives
+ */
+export const objectsAreEqual = (a: AnyObject, b: AnyObject): boolean => {
+  const aKeys = Object.keys(a)
+  const bKeys = Object.keys(b)
+
+  if (aKeys.length !== bKeys.length) return false
+
+  const allKeys = uniq(aKeys, bKeys)
+
+  const firstDifferentKey = allKeys.find((key) => {
+    const aValue = a[key]
+    const bValue = b[key]
+
+    if (typeof aValue === 'object' && typeof bValue === 'object') {
+      return !objectsAreEqual(aValue, bValue)
+    }
+
+    return aValue !== bValue
+  })
+
+  return firstDifferentKey === undefined
+}
 
 /**
  * Turns an array in to an object with numeric keys

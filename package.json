@@ -65,7 +65,7 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.7"
+    "typescript": "^4.2.4"
   },
   "bugs": {
     "url": "https://github.com/churchcommunitybuilder/js-utils/issues"
