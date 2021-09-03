@@ -1,6 +1,33 @@
+export type ArrayOperator = 'in' | 'not_in' | 'is_set' | 'is_not_set'
+
+export type BooleanOperator = 'is_set' | 'is_not_set'
+
+export type StringOperator =
+  | 'equal'
+  | 'not_equal'
+  | 'is_set'
+  | 'is_not_set'
+  | 'in'
+  | 'not_in'
+  | 'contains'
+  | 'does_not_contain'
+  | 'like'
+  | 'not_like'
+  | 'contains_like'
+  | 'does_not_contain_like'
+  | 'starts_with'
+  | 'ends_with'
+  | 'legacy'
+
+export type ConstraintOperator = ArrayOperator | BooleanOperator | StringOperator
+
+export type GroupOperator = 'and' | 'or' | 'not'
+
+export type AnyOperator = ConstraintOperator | GroupOperator
+
 export interface Constraint {
   id: string
-  operator: string
+  operator: ConstraintOperator
   value: any
   invert: boolean
   type: string
@@ -8,7 +35,7 @@ export interface Constraint {
 
 export interface GroupConstraint {
   conditions: (Constraint | GroupConstraint)[]
-  operator: string
+  operator: GroupOperator
   invert: boolean
   type: 'group'
 }
@@ -18,7 +45,7 @@ export interface GroupConstraint {
  */
 export const buildSearchConstraint = (
   id: string,
-  operator: string,
+  operator: ConstraintOperator,
   value?: any,
   invert = false,
 ): Constraint => ({
@@ -34,7 +61,7 @@ export const buildSearchConstraint = (
  */
 export const buildSearchGroup = (
   conditions: GroupConstraint['conditions'],
-  operator = 'and',
+  operator: GroupOperator = 'and',
   invert = false,
 ): GroupConstraint => ({
   conditions,
