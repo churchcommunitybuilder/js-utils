@@ -19,11 +19,15 @@ export type StringOperator =
   | 'ends_with'
   | 'legacy'
 
-export type AnyOperator = ArrayOperator | BooleanOperator | StringOperator
+export type ConstraintOperator = ArrayOperator | BooleanOperator | StringOperator
+
+export type GroupOperator = 'and' | 'or' | 'not'
+
+export type AnyOperator = ConstraintOperator | GroupOperator
 
 export interface Constraint {
   id: string
-  operator: string
+  operator: ConstraintOperator
   value: any
   invert: boolean
   type: string
@@ -31,7 +35,7 @@ export interface Constraint {
 
 export interface GroupConstraint {
   conditions: (Constraint | GroupConstraint)[]
-  operator: string
+  operator: GroupOperator
   invert: boolean
   type: 'group'
 }
@@ -41,7 +45,7 @@ export interface GroupConstraint {
  */
 export const buildSearchConstraint = (
   id: string,
-  operator: string,
+  operator: ConstraintOperator,
   value?: any,
   invert = false,
 ): Constraint => ({
@@ -57,7 +61,7 @@ export const buildSearchConstraint = (
  */
 export const buildSearchGroup = (
   conditions: GroupConstraint['conditions'],
-  operator = 'and',
+  operator: GroupOperator = 'and',
   invert = false,
 ): GroupConstraint => ({
   conditions,
