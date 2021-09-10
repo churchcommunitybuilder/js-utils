@@ -1,9 +1,1 @@
-# js-utils
-JS Utils
-
-To publish
-- git checkout master
-- git fetch --all
-- yarn install
-- yarn publish --patch
-- git push --follow-tags
+This package has moved to [js-packages](https://github.com/churchcommunitybuilder/js-packages/tree/main/packages/js-utils)
